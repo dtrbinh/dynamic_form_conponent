@@ -1,0 +1,126 @@
+.container{
+    background-color: white;
+    margin: auto;
+    margin-top: 10%;
+    width: 80%;
+    border: 1px solid gray;
+    border-radius: 10px 10px 10px 10px;
+    -webkit-border-radius: 10px 10px 10px 10px;
+    -moz-border-radius: 10px 10px 10px 10px;
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.12);
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.12);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.12);
+
+    font-family: Arial, Helvetica, sans-serif;
+}
+h1{
+    color: rgb(99, 99, 99);
+}
+h3{
+    color: rgb(176, 176, 176);
+}
+.left_container{
+    display: inline-block;
+    width: 40%;
+    margin-left: 3%;
+    top: 3%;
+}
+
+.right_container{
+    display: inline-block;
+    width: 53%;
+    top: 3%;
+    background-color: rgb(249, 249, 249);
+
+    border-radius: 10px 10px 10px 10px;
+    -webkit-border-radius: 10px 10px 10px 10px;
+    -moz-border-radius: 10px 10px 10px 10px;
+}
+
+#scrollBar{
+    overflow-x: hidden;
+    overflow-y: auto;
+    text-align: left;
+}
+*::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: #ffffff;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: rgb(177, 177, 177);
+    border-radius: 10px;
+    border: 3px solid #ffffff;
+  }
+
+
+/* --------------------BUTTON------------------------- */
+
+  .button{
+    color: white;
+    border-radius: 10px;
+    font-size: 20px;
+    background-color: rgb(255, 82, 82);
+    transition: 0.4s;
+    border: none;
+    padding: 1% 5%;
+    text-align: center;
+  }
+  #disabled{
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+  #enabled{
+    opacity: 1;
+  }
+  #enabled:active{
+    position: relative;
+    background-color: rgb(255, 255, 255);
+    color: rgb(255, 82, 82);
+    border: 1px dotted rgb(255, 82, 82);
+  }
+  
+  #enabled span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.4s;
+  }
+  #enabled:hover span:after {
+    opacity: 1;
+    right: 0;
+ }
+/* --btn next-- */
+  #enabled span#btn_next:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -10px;
+    transition: 0.4s;
+ }
+ #enabled:hover span#btn_next {
+    padding-right: 20px;
+ }
+/* --btn prev-- */
+  #enabled span#btn_prev:after {
+    content: '\00ab';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    left: -120px;
+    transition: 0.4s;
+ }
+ #enabled:hover span#btn_prev {
+    padding-left: 20px;
+ }
+
+
+  /* ------------------------------------------- */
+ .spacer{
+     display: inline-block;
+     white-space: 10px;
+ }
