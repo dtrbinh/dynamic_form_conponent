@@ -64,7 +64,7 @@ h3{
     border-radius: 10px;
     font-size: 20px;
     background-color: rgb(255, 82, 82);
-    transition: 0.4s;
+    transition-duration: 0.3s;
     border: none;
     padding: 1% 5%;
     text-align: center;
@@ -83,16 +83,6 @@ h3{
     border: 1px dotted rgb(255, 82, 82);
   }
   
-  #enabled span {
-    cursor: pointer;
-    display: inline-block;
-    position: relative;
-    transition: 0.4s;
-  }
-  #enabled:hover span:after {
-    opacity: 1;
-    right: 0;
- }
 /* --btn next-- */
   #enabled span#btn_next:after {
     content: '\00bb';
@@ -105,6 +95,18 @@ h3{
  #enabled:hover span#btn_next {
     padding-right: 20px;
  }
+
+ #enabled span#btn_next {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.4s;
+  }
+ #enabled:hover span#btn_next:after {
+    opacity: 1;
+    right: 0;
+ }
+
 /* --btn prev-- */
   #enabled span#btn_prev:after {
     content: '\00ab';
@@ -117,7 +119,16 @@ h3{
  #enabled:hover span#btn_prev {
     padding-left: 20px;
  }
-
+ #enabled span#btn_prev {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.4s;
+  }
+ #enabled:hover span#btn_prev:after {
+    opacity: 1;
+    right: 0;
+ }
 
   /* ------------------------------------------- */
  .spacer{
