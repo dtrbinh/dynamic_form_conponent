@@ -7,38 +7,39 @@
     <title>Dynamic Form Component</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='css/main.css'>
-    <script src='js/main.js'></script>
-    <script src='js/callAPI.js'></script>
 </head>
 
-<body>
-    <div class='container'>
+<body onload="onLoad();onLoad();">
+    <div class=' container'>
         <div class='left_container'>
-            <h1>Form khảo sát tình hình học tập các thành viên GDSC - DUT</h1>
-            <h3>Sau một thời gian hoạt động, GDSC xin được khảo sát các bạn thành viên yêu mến về tình hình học tập và
-                rèn luyện của các bạn tại GDSC.</h3>
-            <div name='button'>
-                <button class='button' id='enabled'>
-                    <span id='btn_prev'>
+            <h1 id='title'></h1>
+            <h3 id='description'></h3>
+            <div id='ctrl_btn'>
+                <button id="prev_btn" class='enabled'>
+                    <span id='btn_prev' onclick="prev();">
                         Mục trước
                     </span>
                 </button>
-                &nbsp
-                <button class='button' id='enabled'>
-                    <span id='btn_next'>
+                <button id='next_btn' class='enabled'>
+                    <span id='btn_next' onclick="next();">
                         Mục sau
                     </span>
                 </button>
             </div>
         </div>
-    </div>
-    <div class='right_container' id='scrollBar'>
-        <div class="dynamic_form">
-            <h1>Form</h1>
-            <button onclick="fetchData()">Get Data</button>
+        <div class='right_container' id='scrollBar'>
+            <div class="dynamic_component">
+                <button onclick="onLoad()">Get Data</button>
+                <h1 id='section_title'></h1>
+                <form id='survey'>
+                </form>
+            </div>
         </div>
+
     </div>
-    </div>
+
 </body>
+<script src='js/main.js'></script>
+<script src='js/callAPI.js'></script>
 
 </html>

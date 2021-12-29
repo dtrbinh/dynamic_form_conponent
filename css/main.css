@@ -58,33 +58,43 @@ h3{
 
 
 /* --------------------BUTTON------------------------- */
-
-  .button{
+  #prev_btn{
+    right: 5%;
+  }
+  #next_btn{
+    left: 5%;
+  }
+  .disabled{
+    cursor: not-allowed;
+    opacity: 0.6;
     color: white;
     border-radius: 10px;
     font-size: 20px;
     background-color: rgb(255, 82, 82);
-    transition-duration: 0.3s;
+    /* transition-duration: 0.3s; */
     border: none;
     padding: 1% 5%;
     text-align: center;
   }
-  #disabled{
-    cursor: not-allowed;
-    opacity: 0.6;
-  }
-  #enabled{
+  .enabled{
+    color: white;
+    border-radius: 10px;
+    font-size: 20px;
+    background-color: rgb(255, 82, 82);
+    /* transition-duration: 0.3s; */
+    border: none;
+    padding: 1% 5%;
+    text-align: center;
     opacity: 1;
   }
-  #enabled:active{
+  .enabled:active{
     position: relative;
     background-color: rgb(255, 255, 255);
     color: rgb(255, 82, 82);
-    border: 1px dotted rgb(255, 82, 82);
   }
   
 /* --btn next-- */
-  #enabled span#btn_next:after {
+  .enabled span#btn_next:after {
     content: '\00bb';
     position: absolute;
     opacity: 0;
@@ -92,23 +102,23 @@ h3{
     right: -10px;
     transition: 0.4s;
  }
- #enabled:hover span#btn_next {
+ .enabled:hover span#btn_next {
     padding-right: 20px;
  }
 
- #enabled span#btn_next {
+ .enabled span#btn_next {
     cursor: pointer;
     display: inline-block;
     position: relative;
     transition: 0.4s;
   }
- #enabled:hover span#btn_next:after {
+ .enabled:hover span#btn_next:after {
     opacity: 1;
     right: 0;
  }
 
 /* --btn prev-- */
-  #enabled span#btn_prev:after {
+  .enabled span#btn_prev:after {
     content: '\00ab';
     position: absolute;
     opacity: 0;
@@ -116,22 +126,41 @@ h3{
     left: -120px;
     transition: 0.4s;
  }
- #enabled:hover span#btn_prev {
+ .enabled:hover span#btn_prev {
     padding-left: 20px;
  }
- #enabled span#btn_prev {
+ .enabled span#btn_prev {
     cursor: pointer;
     display: inline-block;
     position: relative;
     transition: 0.4s;
   }
- #enabled:hover span#btn_prev:after {
+ .enabled:hover span#btn_prev:after {
     opacity: 1;
     right: 0;
  }
-
+ #ctrl_btn{
+    margin: auto;
+    width: 70%;
+    align-self: auto;
+}
   /* ------------------------------------------- */
  .spacer{
      display: inline-block;
      white-space: 10px;
  }
+ /*---------------Dynamic Component-------------------*/
+ .question{
+  color: rgb(99,99,99);
+  size: 30px;
+ }
+.field{
+  width: 90%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  left: 10px;
+  display: inline-block;
+  border: none;
+  border-radius: 4px;
+  box-sizing: border-box;
+}

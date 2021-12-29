@@ -1,4 +1,5 @@
 let result;
+var sections = 0;
 var test = {
     title: "Form khảo sát tình hình học tập các thành viên GDSC - DUT",
     description: "Sau một khoảng thời gian hoạt động, GDSC xin được khảo sát các bạn thành viên yêu mến về tình hình học tập và rèn luyện của các bạn tại GDSC.",
@@ -146,14 +147,14 @@ function callAPI() {
         .then(response => {
             if (!response.ok) {
                 throw new Error("HTTP error " + response.status);
-            } return response.json()
+            } else {
+                //console.log("Response: ", response);
+                return response.json();
+            }
         })
         .then((data) => {
             result = data;
-            console.log("Success: ", result);
-            JSON.stringify(result);
-            console.log("Parse: ", result);
-            return result;
+            //console.log("Data: ", data);
         })
         .catch(err => {
             console.log("Error: ", err);
@@ -162,5 +163,21 @@ function callAPI() {
 
 function fetchData() {
     callAPI();
-    console.log("Result: ", result);
+    //console.log(" Description: ", result.description);
 }
+
+function onLoad() {
+    fetchData();
+    console.log(result);
+    document.getElementById('description').innerHTML = result.description;
+    document.getElementById('title').innerHTML = result.title;
+    document.getElementById('section_title').innerHTML = result.sections[sections].title;
+    loadSurvey();
+}
+function loadSurvey() {
+    checkSections();
+    createSectionTitle(sections);
+    createField(sections);
+    sectionsLoaded[sections] = true;
+}
+
