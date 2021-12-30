@@ -1,4 +1,4 @@
-let result;
+var result;
 var sections = 0;
 var test = {
     title: "Form khảo sát tình hình học tập các thành viên GDSC - DUT",

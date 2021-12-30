@@ -7,41 +7,48 @@
     <title>Dynamic Form Component</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='css/main.css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 </head>
 
-<body onload="onLoad()">
-    <div class=' container'>
-        <div class='left_container'>
-            <div id='info_box'>
-                <h1 id='title'></h1>
-                <h3 id='description'></h3>
+<body onload="onLoad();">
+    <div class="box" id='after_layer' style="display: none;">
+        <div class='container'>
+            <div class='left_container'>
+                <div id='info_box'>
+                    <h1 id='title'></h1>
+                    <h3 id='description'></h3>
+                </div>
+                <div id='ctrl_btn'>
+                    <button id="prev_btn" class='enabled'>
+                        <span id='btn_prev' onclick="prev();">
+                            Mục trước
+                        </span>
+                    </button>
+                    &nbsp;
+                    <button id='next_btn' class='enabled'>
+                        <span id='btn_next' onclick="next();">
+                            Mục sau
+                        </span>
+                    </button>
+                </div>
             </div>
-            <div id='ctrl_btn'>
-                <button id="prev_btn" class='enabled'>
-                    <span id='btn_prev' onclick="prev();">
-                        Mục trước
-                    </span>
-                </button>
-                <button id='next_btn' class='enabled'>
-                    <span id='btn_next' onclick="next();">
-                        Mục sau
-                    </span>
-                </button>
-            </div>
-        </div>
-        <div class='right_container' id='scrollBar'>
-            <div class="dynamic_component">
-                <button onclick="onLoad()">Get Data</button>
-                <h1 id='section_title'></h1>
-                <form id='survey'>
-                </form>
-            </div>
-        </div>
+            <div class='right_container' id='scrollBar'>
+                <div class="dynamic_component">
+                    <h1 id='section_title'></h1>
+                    <h4 id='section_title_description'></h4>
+                    <form id='survey'>
+                    </form>
+                </div>
 
+            </div>
+        </div>
     </div>
-
+    <div class='default' id="before_layer" style="display: block;" onclick="changeState()">
+        <!-- <p>Click me</p> -->
+        <img src='img/giphy.gif' width="70px">
+    </div>
+    <script type='' src='js/main.js'></script>
+    <script type='' src=' js/callAPI.js'></script>
 </body>
-<script src='js/main.js'></script>
-<script src='js/callAPI.js'></script>
 
 </html>

@@ -64,19 +64,26 @@ function createField(s) {
 
 
     for (let i = 0; i < result.sections[s].questions.length; i++) {
-        var newDescription = document.createElement('h3');
-        newDescription.setAttribute('class', 'question');
-        newDescription.innerHTML = result.sections[s].questions[i].question;
-        newDiv.appendChild(newDescription);
+        var newQuestion = document.createElement('h3');
+        newQuestion.setAttribute('class', 'question');
+        newQuestion.innerHTML = result.sections[s].questions[i].question;
+        newDiv.appendChild(newQuestion);
 
         var newField = document.createElement("input");
         newField.setAttribute('class', 'field');
         newField.setAttribute('description', result.sections[s].questions[i].description);
-        newField.setAttribute('placeholder', result.sections[s].questions[i].defaultAnswer);
         newField.setAttribute('required', result.sections[s].questions[i].required);
+
+        if (result.sections[s].questions[i].description != null) {
+            var newDescription = document.createElement('h5');
+            newDescription.setAttribute('class', 'description');
+            newDescription.innerHTML = result.sections[s].questions[i].description;
+            newDiv.appendChild(newDescription);
+        }
 
         if (result.sections[s].questions[i].type == 'NUMBER') {
             newField.setAttribute('id', 'number');
+            newField.setAttribute('placeholder', 'Nhập số');
             newField.setAttribute('min', result.sections[s].questions[i].attrs.min);
             newField.setAttribute('max', result.sections[s].questions[i].attrs.max);
             newDiv.appendChild(newField);
@@ -86,12 +93,17 @@ function createField(s) {
 
                 var newInput = document.createElement('input');
                 newInput.setAttribute('type', 'radio');
-                newInput.setAttribute('value', test.sections[s].questions[i].options[index].value)
+                newInput.setAttribute('value', result.sections[s].questions[i].options[index].value)
+                if (result.sections[s].questions[i].options[index].value == result.sections[s].questions[i].defaultAnswer) {
+                    newInput.setAttribute('checked', 'checked');
+                }
                 newInput.setAttribute('name', 'radio' + i);
+                newInput.setAttribute('class', 'radio');
 
                 var newLabel = document.createElement('label');
-                newLabel.setAttribute('for', test.sections[s].questions[i].options[index].value);
-                newLabel.innerHTML = test.sections[s].questions[i].options[index].text
+                newLabel.setAttribute('class', 'radio_label');
+                newLabel.setAttribute('for', result.sections[s].questions[i].options[index].value);
+                newLabel.innerHTML = result.sections[s].questions[i].options[index].text
 
                 var newBR = document.createElement('br');
                 newBR.setAttribute('class', 'br');
@@ -104,34 +116,56 @@ function createField(s) {
         } else if (result.sections[s].questions[i].type == 'SHORT_TEXT') {
             newField.setAttribute('id', 'short_text');
             newField.setAttribute('type', 'text');
+            newField.setAttribute('placeholder', 'Nhập text');
             newDiv.appendChild(newField);
         } else if (result.sections[s].questions[i].type == 'LONG_TEXT') {
             newField.setAttribute('id', 'long_text');
             newField.setAttribute('type', 'textarea');
+            newField.setAttribute('placeholder', 'Nhập long text');
             newDiv.appendChild(newField);
         }
         console.log('Create elements ' + i);
     }
+    if (s == test.sections.length - 1) {
+        var newButton = document.createElement('button');
+        newButton.setAttribute('type', 'submit');
+        newButton.setAttribute('class','sendSurvey');
+        newButton.innerHTML = 'Gửi';
+        newDiv.appendChild(newButton);
+    }
     console.log('Created!');
-
 }
 function createSectionTitle(s) {
-    var newTitle = document.createElement('h3');
-    newTitle.id = 'section_title';
-    newTitle.innerHTML = result.sections[s].title;
+    document.getElementById('section_title').innerHTML = result.sections[s].title;
+    if (result.sections[s].description != undefined) {
+        document.getElementById('section_title_description').style.display = 'block';
+        document.getElementById('section_title_description').innerHTML = result.sections[s].description;
+    }else{
+        document.getElementById('section_title_description').style.display = 'none';
+    }
 }
+
 
 function hideElements(s) {
     var id = 'div' + s;
     id = id.toString();
-    console.log(id);
     document.getElementById(id).style.display = 'none';
-    console.log('Hided!');
+    console.log('Hided ' + id);
 }
 function displayElement(s) {
     var id = 'div' + s;
     id = id.toString();
-    console.log(id);
     document.getElementById(id).style.display = 'block';
-    console.log('Displayed');
+    document.getElementById('section_title').innerHTML = result.sections[s].title;
+    document.getElementById('section_title_description').innerHTML = result.sections[s].description;
+    console.log('Displayed ' + id);
+}
+
+function changeState() {
+    document.getElementById('before_layer').className = 'animation';
+    setTimeout(function () {
+        document.getElementById('before_layer').style.display = 'none';
+        document.getElementById('after_layer').style.display = 'block';
+    }, 1900);
+    onLoad();
 }
