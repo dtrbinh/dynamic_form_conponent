@@ -51,11 +51,17 @@ function checkSections() {
 
 function createField(s) {
     var survey = document.getElementById('survey');
+
     console.log('Creating...');
     var newDiv = document.createElement('div');
     newDiv.setAttribute('id', 'div' + s);
     newDiv.setAttribute('style', 'display: block');
     survey.appendChild(newDiv);
+
+    document.getElementById('description').innerHTML = result.description;
+    document.getElementById('title').innerHTML = result.title;
+    document.getElementById('section_title').innerHTML = result.sections[s].title;
+
 
     for (let i = 0; i < result.sections[s].questions.length; i++) {
         var newDescription = document.createElement('h3');
@@ -68,18 +74,42 @@ function createField(s) {
         newField.setAttribute('description', result.sections[s].questions[i].description);
         newField.setAttribute('placeholder', result.sections[s].questions[i].defaultAnswer);
         newField.setAttribute('required', result.sections[s].questions[i].required);
-        newField.setAttribute('type', result.sections[s].questions[i].type);
 
         if (result.sections[s].questions[i].type == 'NUMBER') {
+            newField.setAttribute('id', 'number');
             newField.setAttribute('min', result.sections[s].questions[i].attrs.min);
             newField.setAttribute('max', result.sections[s].questions[i].attrs.max);
+            newDiv.appendChild(newField);
+        } else if (result.sections[s].questions[i].type == 'RADIO') {
+            newField.setAttribute('id', 'radio');
+            for (let index = 0; index < result.sections[s].questions[i].options.length; index++) {
+
+                var newInput = document.createElement('input');
+                newInput.setAttribute('type', 'radio');
+                newInput.setAttribute('value', test.sections[s].questions[i].options[index].value)
+                newInput.setAttribute('name', 'radio' + i);
+
+                var newLabel = document.createElement('label');
+                newLabel.setAttribute('for', test.sections[s].questions[i].options[index].value);
+                newLabel.innerHTML = test.sections[s].questions[i].options[index].text
+
+                var newBR = document.createElement('br');
+                newBR.setAttribute('class', 'br');
+
+                newDiv.appendChild(newInput);
+                newDiv.appendChild(newLabel);
+                newDiv.appendChild(newBR);
+
+            }
+        } else if (result.sections[s].questions[i].type == 'SHORT_TEXT') {
+            newField.setAttribute('id', 'short_text');
+            newField.setAttribute('type', 'text');
+            newDiv.appendChild(newField);
+        } else if (result.sections[s].questions[i].type == 'LONG_TEXT') {
+            newField.setAttribute('id', 'long_text');
+            newField.setAttribute('type', 'textarea');
+            newDiv.appendChild(newField);
         }
-        if (result.sections[s].questions[i].type == 'RADIO') {
-
-        }
-
-        newDiv.appendChild(newField);
-
         console.log('Create elements ' + i);
     }
     console.log('Created!');

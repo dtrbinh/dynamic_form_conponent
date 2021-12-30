@@ -163,15 +163,13 @@ function callAPI() {
 
 function fetchData() {
     callAPI();
+    console.log(result);
+
     //console.log(" Description: ", result.description);
 }
 
 function onLoad() {
     fetchData();
-    console.log(result);
-    document.getElementById('description').innerHTML = result.description;
-    document.getElementById('title').innerHTML = result.title;
-    document.getElementById('section_title').innerHTML = result.sections[sections].title;
     loadSurvey();
 }
 function loadSurvey() {
