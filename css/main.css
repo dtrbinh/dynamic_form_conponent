@@ -1,7 +1,7 @@
 .box{
   width: 90%;
   margin: auto;
-    margin-top: 7%;
+    margin-top: 5%;
   border: 1px solid var(--bg-border-color);
     border-radius: 10px 10px 10px 10px;
       -webkit-border-radius: 10px 10px 10px 10px;
@@ -247,6 +247,7 @@ h5{
     border-left: 5px solid var(--btn-hover-color);
     box-sizing: border-box;
     color: var(--text-f-color);
+    font-weight: 400;
 }
 .field::placeholder{
   color: var(--text-f-color);
@@ -343,15 +344,15 @@ h5{
   
   --text-h-color:rgb(147, 222, 255);
   --text-p-color:rgb(247,247,247);
-  --text-f-color:rgb(247,247,247);
+  --text-f-color:rgb(50,54,67);
 
   --btn-color:rgb(147, 222, 255);
   --btn-hover-color: rgb(132, 195, 223);
   --btn-text-color: rgb(50,54,67);
 
   --scroll-bar-bg: rgb(96,100,112);
-  --scroll-bar-track: rgb(147, 222, 255);
-  --scroll-bar-thumb: rgb(247,247,247);
+  --scroll-bar-track: rgb(247,247,247);
+  --scroll-bar-thumb: rgb(147, 222, 255);
 }
 
 /* ------Toggle button-------- */
