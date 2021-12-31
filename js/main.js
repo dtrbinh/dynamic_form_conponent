@@ -177,10 +177,6 @@ function changeState() {
     onLoad();
 }
 
-function checkField(){
-
-}
-
 function sendSurvey(){
     if(checkValid()){
         console.log('Sent!');
