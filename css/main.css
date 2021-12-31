@@ -371,7 +371,7 @@ label .input:checked + .toggle-wrapper {
 }
 label .input:checked + .toggle-wrapper > .selector {
   left: calc(100% - 25px);
-  background-color: #3957ee;
+  background-color: rgb(147,222,255);
 }
 label .toggle-wrapper {
   position: relative;
