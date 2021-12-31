@@ -118,6 +118,7 @@ function createField(s) {
             newTextArea.setAttribute('cols', '1');
             newTextArea.setAttribute('rows', '5');
             newTextArea.setAttribute('maxlength', result.sections[s].questions[i].attrs.maxLength);
+            newTextArea.setAttribute('minlength', result.sections[s].questions[i].attrs.minLength);
             newTextArea.setAttribute('placeholder', 'Nhập long text');
             newDiv.appendChild(newTextArea);
 
