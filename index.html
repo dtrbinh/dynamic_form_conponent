@@ -10,8 +10,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 </head>
 
-<body onload="onLoad();">
-    <div class="box" id='after_layer' style="display: none;">
+<body onload="onLoad();">  
+    <div class="box" id='rear_layer' style="display: none;">
         <div class='container'>
             <div class='left_container'>
                 <div id='info_box'>
@@ -42,10 +42,18 @@
 
             </div>
         </div>
-    </div>
-    <div class='default' id="before_layer" style="display: block;" onclick="changeState()">
+    </div>  
+    <div class='default' id="front_layer" style="display: block;" onclick="changeState()">
         <!-- <p>Click me</p> -->
         <img src='img/giphy.gif' width="70px">
+    </div>
+    <div class='' id='toggle_btn'>
+        <label class='theme-switch' for="toggle" >
+            <input class="input" id="toggle" type="checkbox" />
+            <div class="toggle-wrapper">
+                <span class="selector"></span>
+            </div>
+        </label>
     </div>
     <script type='' src='js/main.js'></script>
     <script type='' src=' js/callAPI.js'></script>

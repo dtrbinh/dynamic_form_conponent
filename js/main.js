@@ -124,10 +124,11 @@ function createField(s) {
         }
         console.log('Create elements ' + i);
     }
-    if (s == test.sections.length - 1) {
+    if (s == result.sections.length - 1) {
         var newButton = document.createElement('button');
         newButton.setAttribute('type', 'submit');
         newButton.setAttribute('class', 'sendSurvey');
+        newButton.setAttribute('onclick', 'sendSurvey()');
         newButton.innerHTML = 'Gửi';
         newDiv.appendChild(newButton);
     }
@@ -167,10 +168,10 @@ function displayElement(s) {
     console.log('Displayed ' + id);
 }
 function changeState() {
-    document.getElementById('before_layer').className = 'animation';
+    document.getElementById('front_layer').className = 'animation';
     setTimeout(function () {
-        document.getElementById('before_layer').style.display = 'none';
-        document.getElementById('after_layer').style.display = 'block';
+        document.getElementById('front_layer').style.display = 'none';
+        document.getElementById('rear_layer').style.display = 'block';
     }, 1900);
     onLoad();
 }
@@ -178,3 +179,28 @@ function changeState() {
 function checkField(){
 
 }
+
+function sendSurvey(){
+    console.log('Sent!');
+}
+// ------------Night mode switch---------------
+var currentTheme = localStorage.getItem('theme');
+var toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
+
+if (currentTheme) {
+    document.documentElement.setAttribute('data-theme', currentTheme);
+    if (currentTheme === 'dark') {
+        toggleSwitch.checked = true;
+    }
+}
+function switchTheme(e) {
+    if (e.target.checked) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+    } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+    }
+    console.log('Changed!');
+}
+toggleSwitch.addEventListener('change', switchTheme);
