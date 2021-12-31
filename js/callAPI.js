@@ -12,7 +12,7 @@ var test = {
                     type: "SHORT_TEXT",
                     description: null,
                     defaultAnswer: null,
-                    required: true
+                    required: true,
                 },
                 {
                     question: "Bạn là sinh viên năm mấy?",
