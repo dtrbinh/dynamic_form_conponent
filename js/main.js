@@ -182,7 +182,11 @@ function checkField(){
 }
 
 function sendSurvey(){
-    console.log('Sent!');
+    if(checkValid()){
+        console.log('Sent!');
+    }else{
+        console.log('Send failed');
+    }
 }
 // ------------Night mode switch---------------
 var currentTheme = localStorage.getItem('theme');

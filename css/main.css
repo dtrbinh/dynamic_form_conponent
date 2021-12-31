@@ -248,6 +248,7 @@ h5{
     box-sizing: border-box;
     color: var(--text-f-color);
     font-weight: 400;
+    border: none;
 }
 .field::placeholder{
   color: var(--text-f-color);
@@ -305,19 +306,21 @@ h5{
 }
 
 .field_alert{
-  width: 90%;
+  width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
   left: 10px;
   display: inline-block;
-  border: none;
+  border: 1px solid red;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
-  border-left: 3px solid var(--btn-hover-color);
+  border-left: 5px solid var(--btn-hover-color);
   box-sizing: border-box;
+  color: var(--text-f-color);
+  font-weight: 400;
 
   animation: shakeX; 
-  animation-duration: 2s;
+  animation-duration: 1s;
 }
 /* -------Day/Night Mode-------- */
 :root{
