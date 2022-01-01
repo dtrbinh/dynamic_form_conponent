@@ -1,8 +1,6 @@
-var submit = document.getElementById('next_btn');
-var inputs = document.getElementsByClassName('field');
-
 function checkValid(){
-    console.log('Validating...')
+    console.log('Validating...');
+    var inputs = document.getElementsByClassName('field');
     var valid = [];
     valid.length = inputs.length;
     var acceptable = false;
