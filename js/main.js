@@ -1,4 +1,18 @@
 var sectionsLoaded = [false, false, false];
+function onLoad() {
+    fetchData();
+    loadSurvey();
+}
+function fetchData() {
+    callAPI();
+    //console.log(result);
+}
+function loadSurvey() {
+    checkSections();
+    createSectionTitle(sections);
+    createField(sections);
+    sectionsLoaded[sections] = true;
+}
 function next() {
     //e.preventDefault();
     if (sections < 2) {
@@ -17,7 +31,6 @@ function next() {
 function prev() {
     //e.preventDefault();
     if (sections > 0) {
-
         hideElements(sections);
         sections--;
         if (sectionsLoaded[sections]) {
@@ -34,15 +47,12 @@ function checkSections() {
         case 0:
             document.getElementById('prev_btn').className = 'disabled';
             break;
-        case 1:
-            document.getElementById('prev_btn').className = 'enabled';
-            document.getElementById('next_btn').className = 'enabled';
-            break;
-        case 2:
+        case result.sections.length - 1:
             document.getElementById('next_btn').className = 'disabled';
             break;
         default:
-            console.log('Sections error');
+            document.getElementById('prev_btn').className = 'enabled';
+            document.getElementById('next_btn').className = 'enabled';
             break;
     }
 }
@@ -72,56 +82,58 @@ function createField(s) {
             newDescription.innerHTML = result.sections[s].questions[i].description;
             newDiv.appendChild(newDescription);
         }
-        if (result.sections[s].questions[i].type == 'NUMBER') {
-            newField.setAttribute('id', 'number');
-            newField.setAttribute('type', 'number');
-            newField.setAttribute('placeholder', 'Nhập số');
-            newField.setAttribute('min', result.sections[s].questions[i].attrs.min);
-            newField.setAttribute('max', result.sections[s].questions[i].attrs.max);
-            newDiv.appendChild(newField);
-        } else if (result.sections[s].questions[i].type == 'RADIO') {
-            newField.setAttribute('id', 'radio');
-            for (let index = 0; index < result.sections[s].questions[i].options.length; index++) {
-                var newInput = document.createElement('input');
-                newInput.setAttribute('type', 'radio');
-                newInput.setAttribute('value', result.sections[s].questions[i].options[index].value)
-                if (result.sections[s].questions[i].options[index].value == result.sections[s].questions[i].defaultAnswer) {
-                    newInput.setAttribute('checked', 'checked');
+        switch (result.sections[s].questions[i].type) {
+            case 'NUMBER':
+                newField.setAttribute('id', 'number');
+                newField.setAttribute('type', 'number');
+                newField.setAttribute('placeholder', 'Nhập số');
+                newField.setAttribute('min', result.sections[s].questions[i].attrs.min);
+                newField.setAttribute('max', result.sections[s].questions[i].attrs.max);
+                newDiv.appendChild(newField);
+                break;
+            case 'RADIO':
+                newField.setAttribute('id', 'radio');
+                for (let index = 0; index < result.sections[s].questions[i].options.length; index++) {
+                    var newInput = document.createElement('input');
+                    newInput.setAttribute('type', 'radio');
+                    newInput.setAttribute('value', result.sections[s].questions[i].options[index].value)
+                    if (result.sections[s].questions[i].options[index].value == result.sections[s].questions[i].defaultAnswer) {
+                        newInput.setAttribute('checked', 'checked');
+                    }
+                    newInput.setAttribute('name', 'radio' + i);
+                    newInput.setAttribute('class', 'radio');
+                    var newLabel = document.createElement('label');
+                    newLabel.setAttribute('class', 'radio_label');
+                    newLabel.setAttribute('for', result.sections[s].questions[i].options[index].value);
+                    newLabel.innerHTML = result.sections[s].questions[i].options[index].text
+                    var newBR = document.createElement('br');
+                    newBR.setAttribute('class', 'br');
+                    newDiv.appendChild(newInput);
+                    newDiv.appendChild(newLabel);
+                    newDiv.appendChild(newBR);
                 }
-                newInput.setAttribute('name', 'radio' + i);
-                newInput.setAttribute('class', 'radio');
-                var newLabel = document.createElement('label');
-                newLabel.setAttribute('class', 'radio_label');
-                newLabel.setAttribute('for', result.sections[s].questions[i].options[index].value);
-                newLabel.innerHTML = result.sections[s].questions[i].options[index].text
-                var newBR = document.createElement('br');
-                newBR.setAttribute('class', 'br');
-                newDiv.appendChild(newInput);
-                newDiv.appendChild(newLabel);
-                newDiv.appendChild(newBR);
-            }
-        } else if (result.sections[s].questions[i].type == 'SHORT_TEXT') {
-            newField.setAttribute('id', 'short_text');
-            newField.setAttribute('type', 'text');
-            newField.setAttribute('placeholder', 'Nhập text');
-            newDiv.appendChild(newField);
-        } else if (result.sections[s].questions[i].type == 'LONG_TEXT') {
-            // newField.setAttribute('id', 'long_text');
-            // newField.setAttribute('type', 'textarea');
-            // newField.setAttribute('placeholder', 'Nhập long text');
-            // newDiv.appendChild(newField);
-            var newTextArea = document.createElement('textarea');
-            newTextArea.setAttribute('class', 'field');
-            newTextArea.setAttribute('description', result.sections[s].questions[i].description);
-            newTextArea.setAttribute('required', result.sections[s].questions[i].required);
-            newTextArea.setAttribute('id', 'long_text');
-            newTextArea.setAttribute('cols', '1');
-            newTextArea.setAttribute('rows', '5');
-            newTextArea.setAttribute('maxlength', result.sections[s].questions[i].attrs.maxLength);
-            newTextArea.setAttribute('minlength', result.sections[s].questions[i].attrs.minLength);
-            newTextArea.setAttribute('placeholder', 'Nhập long text');
-            newDiv.appendChild(newTextArea);
-
+                break;
+            case 'SHORT_TEXT':
+                newField.setAttribute('id', 'short_text');
+                newField.setAttribute('type', 'text');
+                newField.setAttribute('placeholder', 'Nhập text');
+                newDiv.appendChild(newField);
+                break;
+            case 'LONG_TEXT':
+                var newTextArea = document.createElement('textarea');
+                newTextArea.setAttribute('class', 'field');
+                newTextArea.setAttribute('description', result.sections[s].questions[i].description);
+                newTextArea.setAttribute('required', result.sections[s].questions[i].required);
+                newTextArea.setAttribute('id', 'long_text');
+                newTextArea.setAttribute('cols', '1');
+                newTextArea.setAttribute('rows', '5');
+                newTextArea.setAttribute('maxlength', result.sections[s].questions[i].attrs.maxLength);
+                newTextArea.setAttribute('minlength', result.sections[s].questions[i].attrs.minLength);
+                newTextArea.setAttribute('placeholder', 'Nhập long text');
+                newDiv.appendChild(newTextArea);
+                break;
+            default:
+                break;
         }
         console.log('Create elements ' + i);
     }
@@ -176,18 +188,16 @@ function changeState() {
     }, 1900);
     onLoad();
 }
-
-function sendSurvey(){
-    if(checkValid()){
+function sendSurvey() {
+    if (checkValid()) {
         console.log('Sent!');
-    }else{
+    } else {
         console.log('Send failed');
     }
 }
 // ------------Night mode switch---------------
 var currentTheme = localStorage.getItem('theme');
 var toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
-
 if (currentTheme) {
     document.documentElement.setAttribute('data-theme', currentTheme);
     if (currentTheme === 'dark') {

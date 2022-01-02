@@ -19,21 +19,5 @@ function callAPI() {
         });
 }
 
-function fetchData() {
-    callAPI();
-    console.log(result);
 
-    //console.log(" Description: ", result.description);
-}
-
-function onLoad() {
-    fetchData();
-    loadSurvey();
-}
-function loadSurvey() {
-    checkSections();
-    createSectionTitle(sections);
-    createField(sections);
-    sectionsLoaded[sections] = true;
-}
 
